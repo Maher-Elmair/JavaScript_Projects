@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #595dbb;
+}
+
+.sortable-list {
+  background: #fff;
+  width: 445px;
+  border-radius: 6px;
+  padding: 30px 25px 20px;
+  list-style: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sortable-list .item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 13px;
+  margin-bottom: 11px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  cursor: grab;
+}
+
+.sortable-list .item.dragging {
+  opacity: 0.6;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.sortable-list .item:active {
+  cursor: grabbing;
+}
+
+.item .details {
+  display: flex;
+  align-items: center;
+}
+
+.item .details img {
+  width: 43px;
+  height: 43px;
+  margin-right: 12px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.item .details span {
+  font-size: 1.13rem;
+}
+
+.item i {
+  font-size: 1.5rem;
+  color: #474747;
+}
+
+.sortable-list .item.placeholder {
+  border: 2px dashed #ccc;
+  background-color: #f9f9f9;
+}

@@ -1,0 +1,289 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.slider-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  padding: 0 20px;
+}
+
+.slider-wrapper {
+  overflow: hidden;
+  border-radius: 16px;
+  padding: 50px 10px;
+  position: relative;
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slider-track.no-transition {
+  transition: none;
+}
+
+.card {
+  flex: 0 0 100%;
+  padding: 0 10px;
+}
+
+.card-content {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content:hover {
+  transform: translateY(-8px);
+}
+
+/* Card number badge */
+.card-number {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+  z-index: 5;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+}
+
+.card-image {
+  width: 100%;
+  height: 320px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
+}
+
+.card-image i {
+  font-size: 90px;
+  color: white;
+  opacity: 0.95;
+  position: relative;
+  z-index: 2;
+}
+
+.card-body {
+  padding: 35px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 220px;
+}
+
+.card-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+
+.card-description {
+  font-size: 16px;
+  color: #4a5568;
+  line-height: 1.7;
+}
+
+/* Navigation Buttons */
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+}
+
+.nav-button:hover {
+  background: white;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+.nav-button:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.nav-button i {
+  font-size: 20px;
+  color: #1e3c72;
+}
+
+.nav-button.prev {
+  left: 12px;
+}
+
+.nav-button.next {
+  right: 12px;
+}
+
+/* Dots Container */
+.dots-container {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.7);
+  transform: scale(1.2);
+}
+
+.dot.active {
+  background: white;
+  width: 36px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+}
+
+/* Tablet Layout - 2 cards */
+@media (min-width: 768px) {
+  .card {
+    flex: 0 0 50%;
+    padding: 0 12px;
+  }
+}
+
+/* Desktop Layout - 3 cards */
+@media (min-width: 1024px) {
+  .card {
+    flex: 0 0 33.333%;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  .slider-container {
+    padding: 0 15px;
+  }
+
+  .nav-button {
+    width: 48px;
+    height: 48px;
+  }
+
+  .nav-button.prev {
+    left: 0px;
+  }
+
+  .nav-button.next {
+    right: 0px;
+  }
+
+  .nav-button i {
+    font-size: 18px;
+  }
+
+  .card-image {
+    height: 280px;
+  }
+
+  .card-body {
+    padding: 28px;
+    min-height: 200px;
+  }
+
+  .card-number {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    top: 20px;
+    right: 20px;
+  }
+
+  .card-title {
+    font-size: 22px;
+  }
+
+  .card-description {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slider-container {
+    padding: 0 10px;
+  }
+
+  .nav-button.prev {
+    left: 0px;
+  }
+
+  .nav-button.next {
+    right: 0px;
+  }
+
+  .slider-wrapper {
+    padding: 40px 8px;
+  }
+}

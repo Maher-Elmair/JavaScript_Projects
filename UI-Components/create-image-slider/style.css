@@ -1,0 +1,107 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Tahoma, Arial;
+}
+
+.slider-container {
+  margin: 20px auto;
+  width: 1200px;
+  max-width: 98%;
+  height: 600px;
+  position: relative;
+  cursor: grab;
+}
+
+.slider-container.dragging {
+  cursor: grabbing;
+  user-select: none;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.slider-container img {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.slider-container img.active {
+  opacity: 1;
+}
+
+.slider-container .slide-number {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 15px;
+  z-index: 2;
+  border-radius: 6px;
+}
+
+.slider-controls {
+  width: 85%;
+  margin: auto;
+  overflow: hidden;
+}
+
+.slider-controls .prev,
+.slider-controls .next {
+  background-color: #960000;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 5px;
+  user-select: none;
+  width: 20%;
+}
+
+.slider-controls .prev {
+  float: left;
+}
+
+.slider-controls .next {
+  float: right;
+}
+
+.slider-controls .indicators {
+  width: 60%;
+  float: left;
+}
+
+.slider-controls .indicators ul {
+  list-style: none;
+  margin: 0;
+  text-align: center;
+}
+
+.slider-controls .indicators ul li {
+  display: inline-block;
+  background-color: #f6f6f6;
+  color: #333;
+  font-weight: bold;
+  height: 28px;
+  width: 28px;
+  border-radius: 4px;
+  margin: 0 2px;
+  line-height: 28px;
+  cursor: pointer;
+}
+
+.slider-controls .indicators ul li.active {
+  background-color: #960000;
+  color: #fff;
+}

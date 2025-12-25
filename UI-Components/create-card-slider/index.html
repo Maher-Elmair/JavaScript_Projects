@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Professional Card Slider</title>
+  </head>
+  <body>
+    <div class="slider-container">
+      <!-- Previous Button -->
+      <button class="nav-button prev" id="prevBtn" aria-label="Previous slide">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+
+      <div class="slider-wrapper">
+        <!-- Slider Track -->
+        <div class="slider-track" id="sliderTrack">
+          <!-- Cards will be dynamically generated here -->
+        </div>
+      </div>
+
+      <!-- Next Button -->
+      <button class="nav-button next" id="nextBtn" aria-label="Next slide">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+
+      <!-- Navigation Dots -->
+      <div class="dots-container" id="dotsContainer"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

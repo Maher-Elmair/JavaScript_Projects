@@ -1,0 +1,126 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #171427;
+    --bird-color: yellow;
+    --obstacle-color: #f8f8f8;
+}
+
+#game {
+    background-color: var(--bg-color);
+    width: 400px;
+    height: 500px;
+    border: 1px solid black;
+    margin: 25px auto;
+    position: relative;
+    overflow: hidden;
+}
+
+#obstacle {
+    width: 50px;
+    height: 500px;
+    background-color: var(--obstacle-color);
+    position: absolute;
+    top: 0;
+    left: 100%;
+    z-index: 1;
+    animation: obstacle-anim 2s infinite linear;
+    display: none;
+}
+
+#hole {
+    width: 50px;
+    height: 150px;
+    background-color: var(--bg-color);
+    position: absolute;
+    top: 150px;
+    left: 100%;
+    z-index: 2;
+    animation: obstacle-anim 2s infinite linear;
+    display: none;
+}
+
+#bird {
+    width: 20px;
+    height: 20px;
+    background-color: var(--bird-color);
+    position: absolute;
+    top: 100px;
+    border-radius: 50%;
+    z-index: 3;
+    display: none;
+}
+
+#score {
+    color: burlywood;
+    font-weight: bold;
+    padding-top: 10px;
+    text-align: center;
+    font-size: larger;
+    position: absolute;
+    top: 24px;
+    left: 40%;
+    z-index: 100;
+    display: none;
+}
+
+#playBtn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px 30px;
+    font-size: 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 200;
+}
+
+#pauseBtn {
+    position: absolute;
+    top: 8%;
+    left: 13%;
+    transform: translate(-50%, -50%);
+    padding: 12px 15px;
+    font-size: 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 200;
+    display: none;
+}
+
+#restartBtn {
+    position: absolute;
+    top: 8%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+    padding: 10px 14px 10px 11px;
+    font-size: 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 200;
+    display: none;
+}
+
+@keyframes obstacle-anim {
+    0% {
+        left: 100%;
+    }
+
+    100% {
+        left: -60px;
+    }
+}

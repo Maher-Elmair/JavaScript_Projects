@@ -1,0 +1,233 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.toggle {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  background: rgba(255, 255, 255, 0.95);
+  cursor: pointer;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+}
+
+.toggle span {
+  width: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  height: 4px;
+  transition: 0.3s;
+  border-radius: 2px;
+}
+
+.toggle:hover span {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+nav {
+  position: fixed;
+  z-index: 99999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.98) 0%,
+    rgba(118, 75, 162, 0.98) 100%
+  );
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+nav.open {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+nav .close {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  color: white;
+  border: 3px solid white;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight: bold;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+nav .close:hover {
+  color: #f5576c;
+  border-color: #f5576c;
+  background: rgba(245, 87, 108, 0.2);
+  transform: rotate(90deg) scale(1.1);
+  box-shadow: 0 0 25px rgba(245, 87, 108, 0.5);
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 45px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  margin: 5px 0;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+nav a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  transition: width 0.4s ease;
+}
+
+nav a:hover::before {
+  width: 100%;
+}
+
+nav a:hover {
+  transform: translateX(20px);
+  letter-spacing: 3px;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+/* Content Container */
+.content {
+  max-width: 1200px;
+  margin: 100px auto 40px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+}
+
+.content h1 {
+  color: #667eea;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.content p {
+  color: #555;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.feature-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 30px;
+  border-radius: 15px;
+  color: white;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.feature-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.feature-card p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .toggle {
+    width: 50px;
+    height: 50px;
+    top: 15px;
+    left: 15px;
+  }
+
+  nav .close {
+    width: 50px;
+    height: 50px;
+    top: 20px;
+    right: 20px;
+    font-size: 28px;
+  }
+
+  nav a {
+    font-size: 32px;
+    padding: 20px;
+  }
+
+  .content {
+    margin: 80px 10px 20px;
+    padding: 25px;
+  }
+
+  .content h1 {
+    font-size: 2rem;
+  }
+
+  .content p {
+    font-size: 1rem;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+}

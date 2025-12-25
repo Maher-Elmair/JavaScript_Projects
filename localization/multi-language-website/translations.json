@@ -1,0 +1,29 @@
+{
+  "en": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact us",
+    "selectLanguage": "Select a language",
+    "english": "English",
+    "arabic": "العربية",
+    "chinese": "中文"
+  },
+  "ar": {
+    "home": "الصفحة الرئيسية",
+    "about": "من نحن",
+    "contact": "تواصل معنا",
+    "selectLanguage": "إختر لغة",
+    "english": "English",
+    "arabic": "العربية",
+    "chinese": "中文"
+  },
+  "ch": {
+    "home": "主页",
+    "about": "关于我们",
+    "contact": "联系我们",
+    "selectLanguage": "选择一种语言",
+    "english": "English",
+    "arabic": "العربية",
+    "chinese": "中文"
+  }
+}

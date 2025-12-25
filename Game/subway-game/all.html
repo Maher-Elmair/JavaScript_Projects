@@ -1,0 +1,590 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #game {
+            width: 300px;
+            height: 500px;
+            border: 1px solid black;
+            margin: auto;
+            position: relative;
+            top: 20px;
+            background-image: linear-gradient(to bottom, #c4baff, #fff);
+            overflow: hidden;
+        }
+
+        #player {
+            width: 100px;
+            height: 100px;
+            background-color: purple;
+            position: relative;
+            top: 400px;
+            left: 100px;
+            display: none; /* Hidden initially */
+        }
+
+        #block {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            position: relative;
+            top: -100px;
+            left: 100px;
+            animation: moveDown 2s linear infinite;
+            display: none; /* Hidden initially */
+        }
+
+        #score {
+            font-weight: bold;
+            padding-top: 10px;
+            text-align: center;
+            font-size: larger;
+            position: relative;
+            bottom: 35%;
+            z-index: 100;
+            display: none; /* Hidden initially */
+        }
+
+        #playBtn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 15px 30px;
+            font-size: 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 200;
+        }
+
+        #controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            display: none; /* Hidden initially */
+        }
+
+        button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        @keyframes moveDown {
+            0% {
+                top: -100px;
+            }
+
+            100% {
+                top: 100%;
+            }
+        }
+    </style>
+    <title>Subway Game</title>
+</head>
+<body>
+    <div class="app">
+        <div id="game">
+            <button id="playBtn">Play</button>
+            <div id="player"></div>
+            <div id="block"></div>
+            <div id="score">Score: 0</div>
+        </div>
+        <div id="controls">
+            <button id="pauseBtn">Pause</button>
+            <button id="restartBtn">Restart</button>
+        </div>
+    </div>
+
+    <script>
+        const player = document.getElementById("player");
+        const block = document.getElementById("block");
+        const scoreElement = document.getElementById("score");
+        const playBtn = document.getElementById("playBtn");
+        const pauseBtn = document.getElementById("pauseBtn");
+        const restartBtn = document.getElementById("restartBtn");
+        const controls = document.getElementById("controls");
+
+        let score = 0;
+        let isPaused = false;
+
+        function moveLeft() {
+            if (isPaused) return;
+            const curLeft = parseInt(window.getComputedStyle(player).getPropertyValue("left"));
+            if (curLeft <= 0) return;
+            player.style.left = (curLeft - 100) + "px";
+        }
+
+        function moveRight() {
+            if (isPaused) return;
+            const curRight = parseInt(window.getComputedStyle(player).getPropertyValue("left"));
+            if (curRight >= 200) return;
+            player.style.left = (curRight + 100) + "px";
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (isPaused) return;
+            if (event.key === "ArrowLeft") moveLeft();
+            else if (event.key === "ArrowRight") moveRight();
+        });
+
+        block.addEventListener("animationiteration", () => {
+            if (isPaused) return;
+            const randomPos = Math.floor(Math.random() * 3) * 100;
+            block.style.left = randomPos + "px";
+            score++;
+            scoreElement.innerHTML = `Score: ${score}`;
+        });
+
+        let gameInterval = setInterval(() => {
+            if (isPaused) return;
+            const playerLeft = parseInt(window.getComputedStyle(player).getPropertyValue("left"));
+            const blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
+            const blockTop = parseInt(window.getComputedStyle(block).getPropertyValue("top"));
+            if (playerLeft === blockLeft && blockTop < 400 && blockTop > 220) {
+                alert(`Game Over! Your Score: ${score}`);
+                block.style.top = "-100px";
+                score = 0;
+                scoreElement.innerHTML = `Score: ${score}`;
+                location.reload();
+            }
+        }, 1);
+
+        pauseBtn.addEventListener("click", () => {
+            isPaused = !isPaused;
+            pauseBtn.textContent = isPaused ? "Resume" : "Pause";
+            block.style.animationPlayState = isPaused ? "paused" : "running";
+        });
+
+        restartBtn.addEventListener("click", () => {
+            location.reload();
+        });
+
+        // Play button functionality
+        playBtn.addEventListener("click", () => {
+            playBtn.style.display = "none"; // Hide the play button
+            player.style.display = "block"; // Show the player
+            block.style.display = "block"; // Show the block
+            scoreElement.style.display = "block"; // Show the score
+            controls.style.display = "flex"; // Show controls
+        });
+    </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #game {
+            width: 300px;
+            height: 500px;
+            border: 1px solid black;
+            margin: auto;
+            position: relative;
+            top: 20px;
+            background-image: linear-gradient(to bottom, #c4baff, #fff);
+            overflow: hidden;
+        }
+
+        #player {
+            width: 100px;
+            height: 100px;
+            background-color: purple;
+            position: relative;
+            top: 400px;
+            left: 100px;
+            display: none; /* Hidden initially */
+        }
+
+        #block {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            position: relative;
+            top: -100px;
+            left: 100px;
+            animation: moveDown 2s linear infinite;
+            display: none; /* Hidden initially */
+        }
+
+        #score {
+            font-weight: bold;
+            padding-top: 10px;
+            text-align: center;
+            font-size: larger;
+            position: relative;
+            bottom: 35%;
+            z-index: 100;
+            display: none; /* Hidden initially */
+        }
+
+        #playBtn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 15px 30px;
+            font-size: 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 200;
+        }
+
+        #highScores {
+            width: 300px;
+            margin: 20px auto;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+        }
+
+        #highScores h3 {
+            text-align: center;
+        }
+
+        #highScores ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #highScores li {
+            padding: 5px 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #highScores li:last-child {
+            border-bottom: none;
+        }
+
+        #controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            display: none; /* Hidden initially */
+        }
+
+        button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        @keyframes moveDown {
+            0% {
+                top: -100px;
+            }
+
+            100% {
+                top: 100%;
+            }
+        }
+    </style>
+    <title>Subway Game</title>
+</head>
+<body>
+    <div class="app">
+        <div id="game">
+            <button id="playBtn">Play</button>
+            <div id="player"></div>
+            <div id="block"></div>
+            <div id="score">Score: 0</div>
+        </div>
+        <div id="controls">
+            <button id="pauseBtn">Pause</button>
+            <button id="restartBtn">Restart</button>
+        </div>
+        <div id="highScores">
+            <h3>High Scores</h3>
+            <ul id="highScoreList"></ul>
+        </div>
+    </div>
+
+    <script>
+        const player = document.getElementById("player");
+        const block = document.getElementById("block");
+        const scoreElement = document.getElementById("score");
+        const playBtn = document.getElementById("playBtn");
+        const pauseBtn = document.getElementById("pauseBtn");
+        const restartBtn = document.getElementById("restartBtn");
+        const controls = document.getElementById("controls");
+        const highScoreList = document.getElementById("highScoreList");
+
+        let score = 0;
+        let isPaused = false;
+        let highScores = JSON.parse(localStorage.getItem("highScores")) || []; // Load high scores from local storage
+
+        function updateHighScoreList() {
+            highScoreList.innerHTML = "";
+            highScores
+                .sort((a, b) => b.score - a.score) // Sort by score in descending order
+                .slice(0, 5) // Keep only the top 5 scores
+                .forEach(entry => {
+                    const li = document.createElement("li");
+                    li.textContent = `${entry.name}: ${entry.score}`;
+                    highScoreList.appendChild(li);
+                });
+        }
+
+        function saveHighScore(name, score) {
+            highScores.push({ name, score });
+            localStorage.setItem("highScores", JSON.stringify(highScores));
+            updateHighScoreList();
+        }
+
+        function moveLeft() {
+            if (isPaused) return;
+            const curLeft = parseInt(window.getComputedStyle(player).getPropertyValue("left"));
+            if (curLeft <= 0) return;
+            player.style.left = (curLeft - 100) + "px";
+        }
+
+        function moveRight() {
+            if (isPaused) return;
+            const curRight = parseInt(window.getComputedStyle(player).getPropertyValue("left"));
+            if (curRight >= 200) return;
+            player.style.left = (curRight + 100) + "px";
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (isPaused) return;
+            if (event.key === "ArrowLeft") moveLeft();
+            else if (event.key === "ArrowRight") moveRight();
+        });
+
+        block.addEventListener("animationiteration", () => {
+            if (isPaused) return;
+            const randomPos = Math.floor(Math.random() * 3) * 100;
+            block.style.left = randomPos + "px";
+            score++;
+            scoreElement.innerHTML = `Score: ${score}`;
+        });
+
+        let gameInterval = setInterval(() => {
+            if (isPaused) return;
+            const playerLeft = parseInt(window.getComputedStyle(player).getPropertyValue("left"));
+            const blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
+            const blockTop = parseInt(window.getComputedStyle(block).getPropertyValue("top"));
+            if (playerLeft === blockLeft && blockTop < 400 && blockTop > 220) {
+                const playerName = prompt("Game Over! Enter your name:");
+                if (playerName) saveHighScore(playerName, score);
+                alert(`Your Score: ${score}`);
+                location.reload();
+            }
+        }, 1);
+
+        pauseBtn.addEventListener("click", () => {
+            isPaused = !isPaused;
+            pauseBtn.textContent = isPaused ? "Resume" : "Pause";
+            block.style.animationPlayState = isPaused ? "paused" : "running";
+        });
+
+        restartBtn.addEventListener("click", () => {
+            location.reload();
+        });
+
+        // Play button functionality
+        playBtn.addEventListener("click", () => {
+            playBtn.style.display = "none"; // Hide the play button
+            player.style.display = "block"; // Show the player
+            block.style.display = "block"; // Show the block
+            scoreElement.style.display = "block"; // Show the score
+            controls.style.display = "flex"; // Show controls
+        });
+
+        // Initialize high score list
+        updateHighScoreList();
+        game.addEventListener("click", (event) => {
+            const gameRect = game.getBoundingClientRect();
+            const clickX = event.clientX - gameRect.left;
+
+            if (clickX < gameRect.width / 2) {
+                moveLeft(); // Clicked on the left side
+            } else {
+                moveRight(); // Clicked on the right side
+            }
+        });
+    </script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #game {
+            width: 300px;
+            height: 500px;
+            border: 1px solid black;
+            margin: auto;
+            position: relative;
+            top: 20px;
+            background-image: linear-gradient(to bottom, #c4baff, #fff);
+            overflow: hidden;
+        }
+
+        #player {
+            width: 100px;
+            height: 100px;
+            background-color: purple;
+            position: relative;
+            top: 400px;
+            left: 100px;
+            display: none; /* Hidden initially */
+        }
+
+        #block {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            position: relative;
+            top: -100px;
+            left: 100px;
+            animation: moveDown 2s linear infinite;
+            display: none; /* Hidden initially */
+        }
+
+        #score {
+            font-weight: bold;
+            padding-top: 10px;
+            text-align: center;
+            font-size: larger;
+            position: relative;
+            bottom: 35%;
+            z-index: 100;
+            display: none; /* Hidden initially */
+        }
+
+        #playBtn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 15px 30px;
+            font-size: 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 200;
+        }
+
+        @keyframes moveDown {
+            0% {
+                top: -100px;
+            }
+            100% {
+                top: 100%;
+            }
+        }
+    </style>
+    <title>Subway Game</title>
+</head>
+<body>
+    <div class="app">
+        <div id="game">
+            <button id="playBtn">Play</button>
+            <div id="player"></div>
+            <div id="block"></div>
+            <div id="score">Score: 0</div>
+        </div>
+    </div>
+
+    <script>
+        const player = document.getElementById("player");
+        const block = document.getElementById("block");
+        const scoreElement = document.getElementById("score");
+        const playBtn = document.getElementById("playBtn");
+        const game = document.getElementById("game");
+
+        let score = 0;
+        let isPaused = false;
+
+        function moveLeft() {
+            const curLeft = parseInt(window.getComputedStyle(player).getPropertyValue("left"));
+            if (curLeft > 0) {
+                player.style.left = (curLeft - 100) + "px";
+            }
+        }
+
+        function moveRight() {
+            const curLeft = parseInt(window.getComputedStyle(player).getPropertyValue("left"));
+            if (curLeft < 200) {
+                player.style.left = (curLeft + 100) + "px";
+            }
+        }
+
+        block.addEventListener("animationiteration", () => {
+            const randomPos = Math.floor(Math.random() * 3) * 100;
+            block.style.left = randomPos + "px";
+            score++;
+            scoreElement.innerHTML = `Score: ${score}`;
+        });
+
+        let gameInterval = setInterval(() => {
+            const playerLeft = parseInt(window.getComputedStyle(player).getPropertyValue("left"));
+            const blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
+            const blockTop = parseInt(window.getComputedStyle(block).getPropertyValue("top"));
+            if (playerLeft === blockLeft && blockTop < 400 && blockTop > 220) {
+                alert(`Game Over! Your Score: ${score}`);
+                location.reload();
+            }
+        }, 1);
+
+        playBtn.addEventListener("click", () => {
+            playBtn.style.display = "none"; // Hide the play button
+            player.style.display = "block"; // Show the player
+            block.style.display = "block"; // Show the block
+            scoreElement.style.display = "block"; // Show the score
+        });
+
+        game.addEventListener("click", (event) => {
+            const gameRect = game.getBoundingClientRect();
+            const clickX = event.clientX - gameRect.left;
+
+            if (clickX < gameRect.width / 2) {
+                moveLeft(); // Clicked on the left side
+            } else {
+                moveRight(); // Clicked on the right side
+            }
+        });
+    </script>
+</body>
+</html> -->

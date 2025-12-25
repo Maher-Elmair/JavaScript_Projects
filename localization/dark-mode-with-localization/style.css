@@ -1,0 +1,83 @@
+:root {
+  --base-color: #ffffff;
+  --text-color: #333333;
+  --accent-color: #0071ff;
+  --button-hover: #005bb5;
+  --base-variant: #f0f0f0;
+}
+
+[data-theme="dark"] {
+  --base-color: #2c2c2c;
+  --text-color: #e0e0e0;
+  --accent-color: #4dabff;
+  --button-hover: #337ab7;
+  --base-variant: #444444;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: var(--base-color);
+  color: var(--text-color);
+  transition: background-color 0.4s, color 0.4s;
+}
+
+header {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+h1 {
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  background-color: var(--accent-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: var(--button-hover);
+}
+
+#theme-switch {
+  height: 50px;
+  width: 50px;
+  padding: 0;
+  border-radius: 50%;
+  background-color: var(--base-variant);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+#theme-switch svg {
+  fill: var(--accent-color);
+  transition: fill 0.3s;
+}
+
+#theme-switch svg:last-child {
+  display: none;
+}
+
+[data-theme="dark"] #theme-switch svg:first-child {
+  display: none;
+}
+
+[data-theme="dark"] #theme-switch svg:last-child {
+  display: block;
+}

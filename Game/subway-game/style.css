@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#game {
+    width: 300px;
+    height: 500px;
+    border: 1px solid black;
+    margin: auto;
+    position: relative;
+    top: 40px;
+    background-image: linear-gradient(to bottom, #c4baff, #fff);
+    overflow: hidden;
+}
+
+#player {
+    width: 100px;
+    height: 100px;
+    background-color: purple;
+    position: relative;
+    top: 400px;
+    left: 100px;
+    display: none;
+    /* Hidden initially */
+}
+
+#block {
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    position: relative;
+    top: -100px;
+    left: 100px;
+    animation: moveDown 2s linear infinite;
+    display: none;
+    /* Hidden initially */
+}
+
+#score {
+    font-weight: bold;
+    padding-top: 10px;
+    text-align: center;
+    font-size: larger;
+    position: relative;
+    bottom: 35%;
+    z-index: 100;
+    display: none;
+    /* Hidden initially */
+}
+
+#playBtn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px 30px;
+    font-size: 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 200;
+}
+#pauseBtn{
+    position: absolute;
+    top: 8%;
+    left: 13%;
+    transform: translate(-50%, -50%);
+    padding: 12px 15px;
+    font-size: 20px;
+    background-color: darkred;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 200;
+    display: none;
+}
+#restartBtn{
+    position: absolute;
+    top: 8%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+    padding: 10px 14px 10px 11px;    font-size: 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 200;
+    display: none;
+}
+@keyframes moveDown {
+    0% {
+        top: -100px;
+    }
+
+    100% {
+        top: 100%;
+    }
+}
